@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* global-styles.css */
+
+h1 {
+    color: red !important;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+    /* Set your desired width */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: red !important;
+    /* Set your thumb color */
+}
+
+::-webkit-scrollbar-track {
+    background-color: black !important;
+    /* Set your track color */
+}
