@@ -39,7 +39,7 @@ const routes = [
       {
         path: "/app/settings/shop",
         icon: "",
-        name: "Shop",
+        name: "Shop Setup",
       },
       {
         path: "/app/settings/registers",
@@ -85,6 +85,11 @@ const routes = [
         path: "/app/settings/preferences",
         icon: "",
         name: "Preferences",
+      },
+      {
+        path: "/app/settings/printer",
+        icon: "",
+        name: "Printer",
       },
     ],
   },

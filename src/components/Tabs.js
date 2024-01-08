@@ -3,8 +3,8 @@ import React from "react";
 function Tabs({ tabs, activeTab, setActiveTab }) {
   return (
     <>
-      <div className="bg-gray-50 dark:bg-gray-900 border-b-2 mx-4">
-        <nav className="flex flex-col sm:flex-row">
+      <div className="bg-gray-50 dark:bg-gray-900 border-b-2 dark:border-gray-600">
+        <nav className="flex">
           {tabs.map((item, key) => (
             <button
               key={key}

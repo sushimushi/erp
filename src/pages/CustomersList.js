@@ -67,7 +67,7 @@ function CustomersList() {
   return (
     <>
       <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div className="p-4">
+      <div className="py-4">
         <TableContainer className="mb-8">
           <Table>
             <TableHeader>

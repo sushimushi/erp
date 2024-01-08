@@ -16,6 +16,7 @@ const DiscountRules = lazy(() => import("../pages/DiscountRules"));
 const AdditionalCharges = lazy(() => import("../pages/AdditionalCharges"));
 const CustomFields = lazy(() => import("../pages/CustomFields"));
 const Preferences = lazy(() => import("../pages/Preferences"));
+const Printers = lazy(() => import("../pages/Printers"));
 const Forms = lazy(() => import("../pages/Forms"));
 const Cards = lazy(() => import("../pages/Cards"));
 const Charts = lazy(() => import("../pages/Charts"));
@@ -115,6 +116,11 @@ const routes = [
     path: "/settings/preferences",
     component: Preferences,
     title: "Preferences"
+  },
+  {
+    path: "/settings/printer",
+    component: Printers,
+    title: "Printer"
   },
   {
     path: "/forms",

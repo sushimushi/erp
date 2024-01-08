@@ -64,7 +64,7 @@ function Receipts() {
   return (
     <>
       <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
-      <div className="p-4">
+      <div className="py-4">
         {activeTab === "All" && (
           <TableContainer className="mb-8">
             <Table>
@@ -124,7 +124,7 @@ function Receipts() {
             <Table>
               <TableHeader>
                 <tr>
-                  <TableCell>Unfullfilled</TableCell>
+                  <TableCell>Unfullfilleds</TableCell>
                   <TableCell>Amount</TableCell>
                   <TableCell>Status</TableCell>
                   <TableCell>Date</TableCell>
