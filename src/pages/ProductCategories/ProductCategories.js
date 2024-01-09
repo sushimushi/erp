@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import PageTitle from "../components/Typography/PageTitle";
-import SectionTitle from "../components/Typography/SectionTitle";
+import PageTitle from "../../components/Typography/PageTitle";
+import SectionTitle from "../../components/Typography/SectionTitle";
 import {
   Table,
   TableHeader,
@@ -15,9 +15,9 @@ import {
   Button,
   Pagination,
 } from "@windmill/react-ui";
-import Tabs from "../components/Tabs";
+import Tabs from "../../components/Tabs";
 
-import response from "../utils/demo/tableData";
+import response from "../../utils/demo/tableData";
 // make a copy of the data, for the second table
 const response2 = response.concat([]);
 
