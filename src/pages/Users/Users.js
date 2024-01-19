@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-import PageTitle from "../components/Typography/PageTitle";
-import SectionTitle from "../components/Typography/SectionTitle";
+import PageTitle from "../../components/Typography/PageTitle";
+import SectionTitle from "../../components/Typography/SectionTitle";
 import {
   Table,
   TableHeader,
@@ -14,14 +14,16 @@ import {
   Avatar,
   Button,
   Pagination,
+  Input,
 } from "@windmill/react-ui";
-import Tabs from "../components/Tabs";
+import Tabs from "../../components/Tabs";
 
-import response from "../utils/demo/tableData";
+import response from "../../utils/demo/tableData";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 // make a copy of the data, for the second table
 const response2 = response.concat([]);
 
-function ProductOptions() {
+function Users() {
   /**
    * DISCLAIMER: This code could be badly improved, but for the sake of the example
    * and readability, all the logic for both table are here.
@@ -42,11 +44,10 @@ function ProductOptions() {
 
   // tab names for receipt page
   const tabs = [
-    "Variants",
-    "Variant Groups",
-    "Addons",
-    "Addon Groups",
-    "Item Groups",
+    "All Cashiers",
+    "All App Users",
+    "All Waiters",
+    "All Kitchen Users",
   ];
   // page Tabs setup
   const [activeTab, setActiveTab] = useState(tabs[0]);
@@ -71,15 +72,18 @@ function ProductOptions() {
     <>
       <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
       <div className="py-4">
-        {activeTab === "Variants" && (
+        {activeTab === "All Cashiers" && (
           <TableContainer className="mb-8">
             <Table>
               <TableHeader>
                 <tr>
-                  <TableCell>Variants </TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Date</TableCell>
+                  <TableCell>
+                    <Input type="checkbox" className="mr-2" />
+                    All
+                  </TableCell>
+                  <TableCell>Register Name</TableCell>
+                  <TableCell>Receipt Number Prefix</TableCell>
+                  <TableCell>Print Receipts? (for SlickPOS Web)</TableCell>
                 </tr>
               </TableHeader>
               <TableBody>
@@ -87,16 +91,19 @@ function ProductOptions() {
                   <TableRow key={i}>
                     <TableCell>
                       <div className="flex items-center text-sm">
-                        <Avatar
-                          className="hidden mr-3 md:block"
-                          src={user.avatar}
-                          alt="User avatar"
+                        <Input
+                          type="checkbox"
+                          name={user.name}
+                          id={user.name}
+                          className="mr-2"
                         />
                         <div>
-                          <p className="font-semibold">{user.name}</p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {user.job}
-                          </p>
+                          <Link
+                            to={"/app/settings/cashier-details/" + i}
+                            className="font-semibold hover:text-gray-500 dark:hover:text-gray-300 cursor-pointer"
+                          >
+                            {user.name}
+                          </Link>
                         </div>
                       </div>
                     </TableCell>
@@ -125,15 +132,18 @@ function ProductOptions() {
             </TableFooter>
           </TableContainer>
         )}
-        {activeTab === "Variant Groups" && (
+        {activeTab === "All App Users" && (
           <TableContainer className="mb-8">
             <Table>
               <TableHeader>
                 <tr>
-                  <TableCell>Variant Groups</TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Date</TableCell>
+                  <TableCell>
+                    <Input type="checkbox" className="mr-2" />
+                    All
+                  </TableCell>
+                  <TableCell>Register Name</TableCell>
+                  <TableCell>Receipt Number Prefix</TableCell>
+                  <TableCell>Print Receipts? (for SlickPOS Web)</TableCell>
                 </tr>
               </TableHeader>
               <TableBody>
@@ -141,16 +151,19 @@ function ProductOptions() {
                   <TableRow key={i}>
                     <TableCell>
                       <div className="flex items-center text-sm">
-                        <Avatar
-                          className="hidden mr-3 md:block"
-                          src={user.avatar}
-                          alt="User avatar"
+                        <Input
+                          type="checkbox"
+                          name={user.name}
+                          id={user.name}
+                          className="mr-2"
                         />
                         <div>
-                          <p className="font-semibold">{user.name}</p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {user.job}
-                          </p>
+                          <Link
+                            to={"/app/settings/app-user-details/" + i}
+                            className="font-semibold hover:text-gray-500 dark:hover:text-gray-300 cursor-pointer"
+                          >
+                            {user.name}
+                          </Link>
                         </div>
                       </div>
                     </TableCell>
@@ -179,15 +192,18 @@ function ProductOptions() {
             </TableFooter>
           </TableContainer>
         )}
-        {activeTab === "Addons" && (
+        {activeTab === "All Waiters" && (
           <TableContainer className="mb-8">
             <Table>
               <TableHeader>
                 <tr>
-                  <TableCell>Addons</TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Date</TableCell>
+                  <TableCell>
+                    <Input type="checkbox" className="mr-2" />
+                    All
+                  </TableCell>
+                  <TableCell>Register Name</TableCell>
+                  <TableCell>Receipt Number Prefix</TableCell>
+                  <TableCell>Print Receipts? (for SlickPOS Web)</TableCell>
                 </tr>
               </TableHeader>
               <TableBody>
@@ -195,16 +211,19 @@ function ProductOptions() {
                   <TableRow key={i}>
                     <TableCell>
                       <div className="flex items-center text-sm">
-                        <Avatar
-                          className="hidden mr-3 md:block"
-                          src={user.avatar}
-                          alt="User avatar"
+                        <Input
+                          type="checkbox"
+                          name={user.name}
+                          id={user.name}
+                          className="mr-2"
                         />
                         <div>
-                          <p className="font-semibold">{user.name}</p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {user.job}
-                          </p>
+                          <Link
+                            to={"/app/settings/waiter-details/" + i}
+                            className="font-semibold hover:text-gray-500 dark:hover:text-gray-300 cursor-pointer"
+                          >
+                            {user.name}
+                          </Link>
                         </div>
                       </div>
                     </TableCell>
@@ -233,15 +252,18 @@ function ProductOptions() {
             </TableFooter>
           </TableContainer>
         )}
-        {activeTab === "Addon Groups" && (
+        {activeTab === "All Kitchen Users" && (
           <TableContainer className="mb-8">
             <Table>
               <TableHeader>
                 <tr>
-                  <TableCell>Addon Groups</TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Date</TableCell>
+                  <TableCell>
+                    <Input type="checkbox" className="mr-2" />
+                    All
+                  </TableCell>
+                  <TableCell>Register Name</TableCell>
+                  <TableCell>Receipt Number Prefix</TableCell>
+                  <TableCell>Print Receipts? (for SlickPOS Web)</TableCell>
                 </tr>
               </TableHeader>
               <TableBody>
@@ -249,70 +271,19 @@ function ProductOptions() {
                   <TableRow key={i}>
                     <TableCell>
                       <div className="flex items-center text-sm">
-                        <Avatar
-                          className="hidden mr-3 md:block"
-                          src={user.avatar}
-                          alt="User avatar"
+                        <Input
+                          type="checkbox"
+                          name={user.name}
+                          id={user.name}
+                          className="mr-2"
                         />
                         <div>
-                          <p className="font-semibold">{user.name}</p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {user.job}
-                          </p>
-                        </div>
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      <span className="text-sm">$ {user.amount}</span>
-                    </TableCell>
-                    <TableCell>
-                      <Badge type={user.status}>{user.status}</Badge>
-                    </TableCell>
-                    <TableCell>
-                      <span className="text-sm">
-                        {new Date(user.date).toLocaleDateString()}
-                      </span>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-            <TableFooter>
-              <Pagination
-                totalResults={totalResults}
-                resultsPerPage={resultsPerPage}
-                onChange={onPageChangeTable1}
-                label="Table navigation"
-              />
-            </TableFooter>
-          </TableContainer>
-        )}
-        {activeTab === "Item Groups" && (
-          <TableContainer className="mb-8">
-            <Table>
-              <TableHeader>
-                <tr>
-                  <TableCell>Item Groups</TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Date</TableCell>
-                </tr>
-              </TableHeader>
-              <TableBody>
-                {dataTable1.map((user, i) => (
-                  <TableRow key={i}>
-                    <TableCell>
-                      <div className="flex items-center text-sm">
-                        <Avatar
-                          className="hidden mr-3 md:block"
-                          src={user.avatar}
-                          alt="User avatar"
-                        />
-                        <div>
-                          <p className="font-semibold">{user.name}</p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {user.job}
-                          </p>
+                          <Link
+                            to={"/app/settings/kitchen-user-details/" + i}
+                            className="font-semibold hover:text-gray-500 dark:hover:text-gray-300 cursor-pointer"
+                          >
+                            {user.name}
+                          </Link>
                         </div>
                       </div>
                     </TableCell>
@@ -346,4 +317,4 @@ function ProductOptions() {
   );
 }
 
-export default ProductOptions;
+export default Users;

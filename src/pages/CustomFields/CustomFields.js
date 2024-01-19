@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import PageTitle from "../components/Typography/PageTitle";
-import SectionTitle from "../components/Typography/SectionTitle";
 import {
   Table,
   TableHeader,
@@ -11,13 +9,13 @@ import {
   TableFooter,
   TableContainer,
   Badge,
-  Avatar,
-  Button,
   Pagination,
+  Input
 } from "@windmill/react-ui";
-import Tabs from "../components/Tabs";
+import Tabs from "../../components/Tabs";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-import response from "../utils/demo/tableData";
+import response from "../../utils/demo/tableData";
 // make a copy of the data, for the second table
 const response2 = response.concat([]);
 
@@ -75,10 +73,13 @@ function DiscountRules() {
             <Table>
               <TableHeader>
                 <tr>
-                  <TableCell>All Discount Rules </TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Date</TableCell>
+                  <TableCell>
+                    <Input type="checkbox" className="mr-2" />
+                    All
+                  </TableCell>
+                  <TableCell>Register Name</TableCell>
+                  <TableCell>Receipt Number Prefix</TableCell>
+                  <TableCell>Print Receipts? (for SlickPOS Web)</TableCell>
                 </tr>
               </TableHeader>
               <TableBody>
@@ -86,16 +87,19 @@ function DiscountRules() {
                   <TableRow key={i}>
                     <TableCell>
                       <div className="flex items-center text-sm">
-                        <Avatar
-                          className="hidden mr-3 md:block"
-                          src={user.avatar}
-                          alt="User avatar"
+                        <Input
+                          type="checkbox"
+                          name={user.name}
+                          id={user.name}
+                          className="mr-2"
                         />
                         <div>
-                          <p className="font-semibold">{user.name}</p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {user.job}
-                          </p>
+                          <Link
+                            to={"/app/settings/payment-types/" + i}
+                            className="font-semibold hover:text-gray-500 dark:hover:text-gray-300 cursor-pointer"
+                          >
+                            {user.name}
+                          </Link>
                         </div>
                       </div>
                     </TableCell>
@@ -129,10 +133,13 @@ function DiscountRules() {
             <Table>
               <TableHeader>
                 <tr>
-                  <TableCell>All Discount Rules </TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Date</TableCell>
+                  <TableCell>
+                    <Input type="checkbox" className="mr-2" />
+                    All
+                  </TableCell>
+                  <TableCell>Register Name</TableCell>
+                  <TableCell>Receipt Number Prefix</TableCell>
+                  <TableCell>Print Receipts? (for SlickPOS Web)</TableCell>
                 </tr>
               </TableHeader>
               <TableBody>
@@ -140,16 +147,19 @@ function DiscountRules() {
                   <TableRow key={i}>
                     <TableCell>
                       <div className="flex items-center text-sm">
-                        <Avatar
-                          className="hidden mr-3 md:block"
-                          src={user.avatar}
-                          alt="User avatar"
+                        <Input
+                          type="checkbox"
+                          name={user.name}
+                          id={user.name}
+                          className="mr-2"
                         />
                         <div>
-                          <p className="font-semibold">{user.name}</p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {user.job}
-                          </p>
+                          <Link
+                            to={"/app/settings/petty-cash-categories/" + i}
+                            className="font-semibold hover:text-gray-500 dark:hover:text-gray-300 cursor-pointer"
+                          >
+                            {user.name}
+                          </Link>
                         </div>
                       </div>
                     </TableCell>
@@ -183,10 +193,13 @@ function DiscountRules() {
             <Table>
               <TableHeader>
                 <tr>
-                  <TableCell>All Discount Rules </TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Date</TableCell>
+                  <TableCell>
+                    <Input type="checkbox" className="mr-2" />
+                    All
+                  </TableCell>
+                  <TableCell>Register Name</TableCell>
+                  <TableCell>Receipt Number Prefix</TableCell>
+                  <TableCell>Print Receipts? (for SlickPOS Web)</TableCell>
                 </tr>
               </TableHeader>
               <TableBody>
@@ -194,16 +207,19 @@ function DiscountRules() {
                   <TableRow key={i}>
                     <TableCell>
                       <div className="flex items-center text-sm">
-                        <Avatar
-                          className="hidden mr-3 md:block"
-                          src={user.avatar}
-                          alt="User avatar"
+                        <Input
+                          type="checkbox"
+                          name={user.name}
+                          id={user.name}
+                          className="mr-2"
                         />
                         <div>
-                          <p className="font-semibold">{user.name}</p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {user.job}
-                          </p>
+                          <Link
+                            to={"/app/settings/additional-details/" + i}
+                            className="font-semibold hover:text-gray-500 dark:hover:text-gray-300 cursor-pointer"
+                          >
+                            {user.name}
+                          </Link>
                         </div>
                       </div>
                     </TableCell>
@@ -237,10 +253,13 @@ function DiscountRules() {
             <Table>
               <TableHeader>
                 <tr>
-                  <TableCell>All Discount Rules </TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Date</TableCell>
+                  <TableCell>
+                    <Input type="checkbox" className="mr-2" />
+                    All
+                  </TableCell>
+                  <TableCell>Register Name</TableCell>
+                  <TableCell>Receipt Number Prefix</TableCell>
+                  <TableCell>Print Receipts? (for SlickPOS Web)</TableCell>
                 </tr>
               </TableHeader>
               <TableBody>
@@ -248,16 +267,19 @@ function DiscountRules() {
                   <TableRow key={i}>
                     <TableCell>
                       <div className="flex items-center text-sm">
-                        <Avatar
-                          className="hidden mr-3 md:block"
-                          src={user.avatar}
-                          alt="User avatar"
+                        <Input
+                          type="checkbox"
+                          name={user.name}
+                          id={user.name}
+                          className="mr-2"
                         />
                         <div>
-                          <p className="font-semibold">{user.name}</p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {user.job}
-                          </p>
+                          <Link
+                            to={"/app/settings/tags/" + i}
+                            className="font-semibold hover:text-gray-500 dark:hover:text-gray-300 cursor-pointer"
+                          >
+                            {user.name}
+                          </Link>
                         </div>
                       </div>
                     </TableCell>

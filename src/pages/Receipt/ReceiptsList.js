@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import PageTitle from "../components/Typography/PageTitle";
-import SectionTitle from "../components/Typography/SectionTitle";
 import {
   Table,
+  Input,
   TableHeader,
   TableCell,
   TableBody,
@@ -15,13 +14,14 @@ import {
   Button,
   Pagination,
 } from "@windmill/react-ui";
-import Tabs from "../components/Tabs";
+import Tabs from "../../components/Tabs";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
-import response from "../utils/demo/tableData";
+import response from "../../utils/demo/tableData";
 // make a copy of the data, for the second table
 const response2 = response.concat([]);
 
-function Sell() {
+function Receipts() {
   /**
    * DISCLAIMER: This code could be badly improved, but for the sake of the example
    * and readability, all the logic for both table are here.
@@ -41,7 +41,7 @@ function Sell() {
   const totalResults = response.length;
 
   // tab names for receipt page
-  const tabs = ["Order", "Current"];
+  const tabs = ["All", "Unfullfilled", "Unpaid"];
   // page Tabs setup
   const [activeTab, setActiveTab] = useState(tabs[0]);
 
@@ -65,15 +65,18 @@ function Sell() {
     <>
       <Tabs tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
       <div className="py-4">
-        {activeTab === "Order" && (
+        {activeTab === "All" && (
           <TableContainer className="mb-8">
             <Table>
               <TableHeader>
                 <tr>
-                  <TableCell>Order</TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Date</TableCell>
+                  <TableCell>
+                    <Input type="checkbox" className="mr-2" />
+                    All
+                  </TableCell>
+                  <TableCell>Register Name</TableCell>
+                  <TableCell>Receipt Number Prefix</TableCell>
+                  <TableCell>Print Receipts? (for SlickPOS Web)</TableCell>
                 </tr>
               </TableHeader>
               <TableBody>
@@ -81,16 +84,19 @@ function Sell() {
                   <TableRow key={i}>
                     <TableCell>
                       <div className="flex items-center text-sm">
-                        <Avatar
-                          className="hidden mr-3 md:block"
-                          src={user.avatar}
-                          alt="User avatar"
+                        <Input
+                          type="checkbox"
+                          name={user.name}
+                          id={user.name}
+                          className="mr-2"
                         />
                         <div>
-                          <p className="font-semibold">{user.name}</p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {user.job}
-                          </p>
+                          <Link
+                            to={"/app/receipt/" + i}
+                            className="font-semibold hover:text-gray-500 dark:hover:text-gray-300 cursor-pointer"
+                          >
+                            {user.name}
+                          </Link>
                         </div>
                       </div>
                     </TableCell>
@@ -119,15 +125,18 @@ function Sell() {
             </TableFooter>
           </TableContainer>
         )}
-        {activeTab === "Current" && (
+        {activeTab === "Unfullfilled" && (
           <TableContainer className="mb-8">
             <Table>
               <TableHeader>
                 <tr>
-                  <TableCell>Current</TableCell>
-                  <TableCell>Amount</TableCell>
-                  <TableCell>Status</TableCell>
-                  <TableCell>Date</TableCell>
+                  <TableCell>
+                    <Input type="checkbox" className="mr-2" />
+                    All
+                  </TableCell>
+                  <TableCell>Register Name</TableCell>
+                  <TableCell>Receipt Number Prefix</TableCell>
+                  <TableCell>Print Receipts? (for SlickPOS Web)</TableCell>
                 </tr>
               </TableHeader>
               <TableBody>
@@ -135,16 +144,79 @@ function Sell() {
                   <TableRow key={i}>
                     <TableCell>
                       <div className="flex items-center text-sm">
-                        <Avatar
-                          className="hidden mr-3 md:block"
-                          src={user.avatar}
-                          alt="User avatar"
+                        <Input
+                          type="checkbox"
+                          name={user.name}
+                          id={user.name}
+                          className="mr-2"
                         />
                         <div>
-                          <p className="font-semibold">{user.name}</p>
-                          <p className="text-xs text-gray-600 dark:text-gray-400">
-                            {user.job}
-                          </p>
+                          <Link
+                            to={"/app/receipt/" + i}
+                            className="font-semibold hover:text-gray-500 dark:hover:text-gray-300 cursor-pointer"
+                          >
+                            {user.name}
+                          </Link>
+                        </div>
+                      </div>
+                    </TableCell>
+                    <TableCell>
+                      <span className="text-sm">$ {user.amount}</span>
+                    </TableCell>
+                    <TableCell>
+                      <Badge type={user.status}>{user.status}</Badge>
+                    </TableCell>
+                    <TableCell>
+                      <span className="text-sm">
+                        {new Date(user.date).toLocaleDateString()}
+                      </span>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+            <TableFooter>
+              <Pagination
+                totalResults={totalResults}
+                resultsPerPage={resultsPerPage}
+                onChange={onPageChangeTable1}
+                label="Table navigation"
+              />
+            </TableFooter>
+          </TableContainer>
+        )}
+        {activeTab === "Unpaid" && (
+          <TableContainer className="mb-8">
+            <Table>
+              <TableHeader>
+                <tr>
+                  <TableCell>
+                    <Input type="checkbox" className="mr-2" />
+                    All
+                  </TableCell>
+                  <TableCell>Register Name</TableCell>
+                  <TableCell>Receipt Number Prefix</TableCell>
+                  <TableCell>Print Receipts? (for SlickPOS Web)</TableCell>
+                </tr>
+              </TableHeader>
+              <TableBody>
+                {dataTable1.map((user, i) => (
+                  <TableRow key={i}>
+                    <TableCell>
+                      <div className="flex items-center text-sm">
+                        <Input
+                          type="checkbox"
+                          name={user.name}
+                          id={user.name}
+                          className="mr-2"
+                        />
+                        <div>
+                          <Link
+                            to={"/app/receipt/" + i}
+                            className="font-semibold hover:text-gray-500 dark:hover:text-gray-300 cursor-pointer"
+                          >
+                            {user.name}
+                          </Link>
                         </div>
                       </div>
                     </TableCell>
@@ -178,4 +250,4 @@ function Sell() {
   );
 }
 
-export default Sell;
+export default Receipts;
